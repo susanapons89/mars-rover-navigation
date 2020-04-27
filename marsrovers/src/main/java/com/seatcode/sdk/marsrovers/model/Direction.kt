@@ -1,5 +1,10 @@
 package com.seatcode.sdk.marsrovers.model
 
+/**
+ * Direction
+ * Enum class representing the four cardinal compass points
+ * @author Susana Pons
+ */
 enum class Direction {
     N {
         override fun rotateLeft() = W
@@ -22,8 +27,18 @@ enum class Direction {
         override fun moveCoordinate() = Coordinate(-1, 0)
     };
 
-
+    /**
+     * Rotate 90º to the left
+     */
     abstract fun rotateLeft(): Direction
+
+    /**
+     * Rotate 90º to the Right
+     */
     abstract fun rotateRight(): Direction
+
+    /**
+     * Move one step forward
+     */
     abstract fun moveCoordinate(): Coordinate
 }
