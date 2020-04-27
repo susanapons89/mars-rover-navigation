@@ -10,10 +10,10 @@ import org.junit.Test
 class RotateLeftMovementTest {
 
     @Test
-    fun run_executeTheMarsRoversMove() {
+    fun run_executeTheMarsRoversRotateLeft() {
         val marsRovers = mock<MarsRovers>()
-        val command = MoveMovement()
+        val command = RotateLeftMovement()
         command.run(marsRovers)
-        verify(marsRovers).moveForward()
+        verify(marsRovers).rotateLeft()
     }
 }

@@ -12,8 +12,8 @@ class RotateRightMovementTest {
     @Test
     fun run_executeTheMarsRoversRotateLeft() {
         val marsRovers = mock<MarsRovers>()
-        val command = RotateLeftMovement()
+        val command = RotateRightMovement()
         command.run(marsRovers)
-        verify(marsRovers).rotateLeft()
+        verify(marsRovers).rotateRight()
     }
 }
