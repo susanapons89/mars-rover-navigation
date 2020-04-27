@@ -4,29 +4,33 @@ import com.google.gson.Gson
 import com.seatcode.sdk.marsrovers.model.Coordinate
 import com.seatcode.sdk.marsrovers.model.Direction
 import com.seatcode.sdk.marsrovers.model.NavigationData
+import com.seatcode.sdk.marsrovers.model.PlateauGrid
 import com.seatcode.sdk.marsrovers.utils.getCommands
 
 class MarsRovers(roverInformation: String) {
 
-    val navigationData = Gson().fromJson<NavigationData>(roverInformation,
+    private val navigationData: NavigationData = Gson().fromJson<NavigationData>(roverInformation,
         NavigationData::class.java)
 
-    var currentPosition: Coordinate
-    var currentDirection: Direction
+    private var currentPosition: Coordinate
+    private var currentDirection: Direction
+    private var plateauGrid: PlateauGrid
 
     init {
         currentPosition = navigationData.roverPosition
         currentDirection = Direction.valueOf(navigationData.roverDirection)
+        plateauGrid = PlateauGrid(navigationData.topRightCorner)
     }
 
-    fun getFinalCoordinates() : String {
+    fun runAllMovements() : String {
         val commands = getCommands(navigationData.movements)
         commands.forEach {
             it.run(this)
         }
-
-        return "$currentPosition $currentDirection"
+        return getCurrentPosition()
     }
+
+    fun getCurrentPosition() = "$currentPosition $currentDirection"
 
     fun rotateLeft() {
         this.currentDirection = this.currentDirection.rotateLeft()
@@ -37,9 +41,9 @@ class MarsRovers(roverInformation: String) {
     }
 
     fun moveForward() {
-        // TODO: Move on the correct direction
-        this.currentPosition = this.currentPosition.plus(this.currentDirection.moveCoordinate())
+        val tmpPostion = this.currentPosition.plus(this.currentDirection.moveCoordinate())
+        if (plateauGrid.isRoverInsideBounds(tmpPostion)) {
+            this.currentPosition = this.currentPosition.plus(this.currentDirection.moveCoordinate())
+        }
     }
-
-
 }

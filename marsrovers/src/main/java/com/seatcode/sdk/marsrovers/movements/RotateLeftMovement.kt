@@ -1,8 +1,8 @@
-package com.seatcode.sdk.marsrovers.commands
+package com.seatcode.sdk.marsrovers.movements
 
 import com.seatcode.sdk.marsrovers.MarsRovers
 
-class RotatetLeftCommand:  ICommand{
+class RotateLeftMovement:  IMovement{
 
     override fun run(marsRover: MarsRovers) {
         marsRover.rotateLeft()
