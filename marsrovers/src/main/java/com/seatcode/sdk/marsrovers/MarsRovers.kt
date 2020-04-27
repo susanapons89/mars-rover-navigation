@@ -41,8 +41,8 @@ class MarsRovers(roverInformation: String) {
     }
 
     fun moveForward() {
-        val tmpPostion = this.currentPosition.plus(this.currentDirection.moveCoordinate())
-        if (plateauGrid.isRoverInsideBounds(tmpPostion)) {
+        val tmpPosition = this.currentPosition.plus(this.currentDirection.moveCoordinate())
+        if (plateauGrid.isRoverInsideBounds(tmpPosition)) {
             this.currentPosition = this.currentPosition.plus(this.currentDirection.moveCoordinate())
         }
     }
