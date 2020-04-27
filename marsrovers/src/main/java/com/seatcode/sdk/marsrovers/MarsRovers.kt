@@ -5,7 +5,7 @@ import com.seatcode.sdk.marsrovers.model.Coordinate
 import com.seatcode.sdk.marsrovers.model.Direction
 import com.seatcode.sdk.marsrovers.model.NavigationData
 import com.seatcode.sdk.marsrovers.model.PlateauGrid
-import com.seatcode.sdk.marsrovers.utils.getCommands
+import com.seatcode.sdk.marsrovers.utils.getMovements
 
 class MarsRovers(roverInformation: String) {
 
@@ -23,8 +23,8 @@ class MarsRovers(roverInformation: String) {
     }
 
     fun runAllMovements() : String {
-        val commands = getCommands(navigationData.movements)
-        commands.forEach {
+        val movements = getMovements(navigationData.movements)
+        movements.forEach {
             it.run(this)
         }
         return getCurrentPosition()

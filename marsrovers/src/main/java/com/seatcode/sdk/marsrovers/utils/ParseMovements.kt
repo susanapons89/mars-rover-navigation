@@ -9,7 +9,7 @@ import java.util.ArrayList
 private val MOVEMENT_MAP: HashMap<Char, IMovement> =
     hashMapOf('L' to RotateLeftMovement(), 'R' to RotateRightMovement(), 'M' to MoveMovement())
 
-fun getCommands(stringCommands: String): ArrayList<IMovement> {
+fun getMovements(stringCommands: String): ArrayList<IMovement> {
     val commands = arrayListOf<IMovement>()
     for (element in stringCommands) {
         MOVEMENT_MAP[element]?.let {
